@@ -9,6 +9,11 @@
     </div>
 
     <div>
+    <label for="station" id="station-label" >Insert Station/Machine: <br> </label>
+    <input type="text" v-model="station" id="station" placeholder="Station"> <br>
+    </div>
+
+    <div>
     <label for="description" id="description-label" >Insert your description: <br></label>
     <textarea type="text" v-model="description" id="description" placeholder="Description"></textarea><br>
     </div>
@@ -29,17 +34,20 @@ const emit = defineEmits(['dataSubmitted']);
 
 const formTitle = ref('Data Analysis')
 const name = ref('');
+const station = ref('');
 const description = ref('');
 const solution = ref('');
 
 function formSubmit() {
 emit('dataSubmitted', {
     name: name.value,
+    station: station.value,
     description: description.value,
     solution: solution.value
 });
 
 name.value = '';
+station.value = '';
 description.value = '';
 solution.value = '';
 }
