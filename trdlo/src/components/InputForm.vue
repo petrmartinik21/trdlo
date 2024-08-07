@@ -2,7 +2,8 @@
   
 <form @submit.prevent="formSubmit" id="form">
     <header>{{ formTitle }}</header>
-   
+    <div><slot name="petr"></slot></div>
+    
     <div>
     <label for="name" id="name-label" >Insert your name: <br> </label>
     <input type="text" v-model="name" id="name" placeholder="Name"> <br>
@@ -40,13 +41,8 @@
 
 <script setup>
 import {ref, computed} from 'vue'
-const emit = defineEmits(['dataSubmitted','isValid']);
-// const props = defineProps({
-//     isValid: {
-//         type: Boolean,
-//         required: true
-//     }
-// });
+const emit = defineEmits(['dataSubmitted','formValidityChanged']);
+
 
 const formTitle = ref('Data Analysis')
 const name = ref('');
@@ -59,8 +55,10 @@ const isValid = computed(() => {
     station.value.trim() !== '' &&
     description.value.trim() !== '' &&
     solution.value.trim() !== '';
+    
 });
 
+emit('formValidityChanged', isValid);
 
 function formSubmit() {
 emit('dataSubmitted', {

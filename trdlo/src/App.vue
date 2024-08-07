@@ -10,12 +10,13 @@ function handleDataSubmitted(data) {
     receivedData.value.push(data);
    
 }
-
-// defineExpose({
-//     handleDataSubmitted
-// });
+const isFormValid = ref(false);
 
 
+const updateFormValidity = (isValid) => {
+    isFormValid.value = isValid;
+ 
+}
 
 </script>
 
@@ -25,12 +26,13 @@ function handleDataSubmitted(data) {
 
   </header>
 
-<InputForm @data-submitted="handleDataSubmitted" :isValid="isValid">
+<InputForm @data-submitted="handleDataSubmitted" @formValidityChanged="updateFormValidity">
     <template v-slot:icon >
-      <span v-if="isValid">👍0</span><span v-else>X</span>
+      <span v-if="!isFormValid.value" >✍️</span> <span v-else>👏</span>
       Save:
     </template>
 
+    <template #petr><h2>Fill all the fields to submit the form: <strong>{{ isFormValid.value ? '✅' : '❌' }}</strong></h2></template>
     
 </InputForm>
 
