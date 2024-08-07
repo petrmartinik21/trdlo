@@ -3,17 +3,17 @@ import InputForm from './components/InputForm.vue';
 import DisplayForm from './components/DisplayForm.vue';
 import {ref} from 'vue'
 
-const displayFormRef = ref(null);
-const receivedData = ref(null);
+// const displayFormRef = ref(null);
+const receivedData = ref([ ]);
 
 function handleDataSubmitted(data) {
-    receivedData.value = data;
-    // displayFormRef.value.handleDataSubmitted(data);
+    receivedData.value.push(data);
+   
 }
 
-defineExpose({
-    handleDataSubmitted
-});
+// defineExpose({
+//     handleDataSubmitted
+// });
 
 
 
@@ -25,8 +25,16 @@ defineExpose({
 
   </header>
 
- <InputForm @data-submitted="handleDataSubmitted"></InputForm>
-<display-form :data="receivedData" ref="displayForm"></display-form>
+<InputForm @data-submitted="handleDataSubmitted" :isValid="isValid">
+    <template v-slot:icon >
+      <span v-if="isValid">👍0</span><span v-else>X</span>
+      Save:
+    </template>
+
+    
+</InputForm>
+
+<display-form :data="receivedData" ></display-form>
 
 </template>
 

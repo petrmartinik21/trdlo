@@ -22,21 +22,45 @@
     <label for="solution" id="solution-label" >Insert your solution: <br></label>
     <textarea type="text" v-model="solution" id="solution" placeholder="Solution"></textarea>
     </div>
-    <Button type="submit" id="submit-button" >Submit</Button>
+   
+
+   
+      
+    <button type="submit" id="submit-button" :disabled="!isValid" >
+        <slot name="icon" ></slot>
+    </button>
+   
+
+
+
 </form> 
     
     
 </template>
 
 <script setup>
-import {ref} from 'vue'
-const emit = defineEmits(['dataSubmitted']);
+import {ref, computed} from 'vue'
+const emit = defineEmits(['dataSubmitted','isValid']);
+// const props = defineProps({
+//     isValid: {
+//         type: Boolean,
+//         required: true
+//     }
+// });
 
 const formTitle = ref('Data Analysis')
 const name = ref('');
 const station = ref('');
 const description = ref('');
 const solution = ref('');
+
+const isValid = computed(() => {
+    return name.value.trim() !== '' && 
+    station.value.trim() !== '' &&
+    description.value.trim() !== '' &&
+    solution.value.trim() !== '';
+});
+
 
 function formSubmit() {
 emit('dataSubmitted', {
@@ -51,6 +75,8 @@ station.value = '';
 description.value = '';
 solution.value = '';
 }
+
+
 
 </script>
 

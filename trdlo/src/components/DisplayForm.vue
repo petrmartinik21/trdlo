@@ -1,12 +1,12 @@
 <template>
     <div v-if="data">
-
-        <p>Name: {{ data.name }}</p>
-        <p>Station: {{ data.station }}</p>
-        <p>Description: {{ data.description }}</p>
-        <p>Solution: {{ data.solution }}</p>
+    <div v-for="(item, index) in data" :key="index">
+        <p >Name: {{ item.name }}</p>
+        <p >Station: {{ item.station }}</p>
+        <p>Description: {{ item.description }}</p>
+        <p>Solution: {{ item.solution }}</p>
     </div>
-    
+    </div>
         <p v-else>No data submitted yet.</p>
   
 </template>
@@ -16,8 +16,8 @@ import { ref } from 'vue'
 
 const props = defineProps({
     data: {
-        type: Object,
-        default: null
+        type: Array,
+        default: () => []
     
     }
 });
