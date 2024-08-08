@@ -1,18 +1,22 @@
 <script setup>
 import InputForm from './components/InputForm.vue';
 import DisplayForm from './components/DisplayForm.vue';
-import {ref} from 'vue'
+import {ref, reactive} from 'vue'
 
-// const displayFormRef = ref(null);
+
 const receivedData = ref([ ]);
 
 function handleDataSubmitted(data) {
-    receivedData.value.push(data);
-   
+    receivedData.value.push(reactive(data));
+    console.log(data); 
 }
+
+function saveChanges(index) {
+
+}
+
+
 const isFormValid = ref(false);
-
-
 const updateFormValidity = (isValid) => {
     isFormValid.value = isValid;
  
@@ -32,7 +36,7 @@ const updateFormValidity = (isValid) => {
       Save:
     </template>
 
-    <template #petr><h2>Fill all the fields to submit the form: <strong>{{ isFormValid.value ? '✅' : '❌' }}</strong></h2></template>
+    <template #fill-the-form><h2>Fill all the fields to submit the form: <strong>{{ isFormValid.value ? '✅' : '❌' }}</strong></h2></template>
     
 </InputForm>
 

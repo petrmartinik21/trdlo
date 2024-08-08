@@ -2,7 +2,7 @@
   
 <form @submit.prevent="formSubmit" id="form">
     <header>{{ formTitle }}</header>
-    <div><slot name="petr"></slot></div>
+    <div><slot name="fill-the-form"></slot></div>
     
     <div>
     <label for="name" id="name-label" >Insert your name: <br> </label>
