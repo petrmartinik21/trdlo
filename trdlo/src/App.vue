@@ -7,13 +7,11 @@ import {ref, reactive} from 'vue'
 const receivedData = ref([ ]);
 
 function handleDataSubmitted(data) {
-    receivedData.value.push(reactive(data));
+    receivedData.value.unshift(reactive(data));
     console.log(data); 
 }
 
-function saveChanges(index) {
 
-}
 
 
 const isFormValid = ref(false);
