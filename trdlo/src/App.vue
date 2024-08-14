@@ -2,14 +2,17 @@
 import InputForm from './components/InputForm.vue';
 import DisplayForm from './components/DisplayForm.vue';
 import {ref, reactive} from 'vue'
-
+import {supabase} from './components/lib/supabaseClient'
 
 const receivedData = ref([ ]);
 
 function handleDataSubmitted(data) {
     receivedData.value.unshift(reactive(data));
-    console.log(data); 
+    // console.log(data); 
 }
+
+console.log(supabase) 
+
 
 
 
