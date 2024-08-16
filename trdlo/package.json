@@ -8,7 +8,13 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "supabase:init" : "supabase init",
+    "supabase:login": "supabase login",
+    "supabase:link": "supabase link --project-ref dezranljtectnaeitgql",
+    "db:migrate:new": "supabase migration new project-trdlo",
+    "db:reset" : "supabase db reset --linked"
+
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.1",
@@ -21,6 +27,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.23.0",
     "prettier": "^3.2.5",
+    "supabase": "^1.190.0",
     "vite": "^5.3.1"
   }
 }
