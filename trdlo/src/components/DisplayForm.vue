@@ -1,6 +1,8 @@
 <template>
-    <ul v-if="data.length > 0">
-    <li v-for="(item, index) in data" :key="index">
+    <ul v-if="sortedData.length > 0">
+   <!-- <li v-for="item in sortedData" :key="item.id"> -->
+    <li v-for="(item, index) in sortedData" :key="index" >
+        <span>{{  item.id }}</span> 
         <p>Name: 
             <span v-if="!isEditing[index]">{{ item.name }}</span>
             <input type="text" 
@@ -46,33 +48,36 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'   
+import { ref, computed } from 'vue'   
 import { defineProps, defineEmits } from 'vue'
 
+// Data from parent component
+// *******************************************************
 const props = defineProps({
     data: {
         type: Array,
         required: true
-    
     }
 });
-
+// *******************************************************
 const emit = defineEmits(["save-changes"]);
 const isEditing = ref(new Array(props.data.length).fill(false));
 
-console.log(isEditing);
 
+// Computed property to sort data in descending order
+// *******************************************************
+const sortedData = computed(() => {
+  return [...props.data].sort((a, b) => {
+    return b.id - a.id; 
+  });
+});
+// *******************************************************
 
-
+// Editing 
 function saveChanges(index) {
   emit('save-changes', { ...props.data[index], index }); // Include the index for parent to update
   isEditing.value[index] = false;
 }
-
-// function cancelChanges(index) {
-//   // Revert changes (e.g., reload data from the original source)
-//   isEditing.value[index] = false;
-// }
 
 
 

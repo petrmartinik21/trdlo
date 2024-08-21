@@ -11,15 +11,17 @@ import { fakerCS_CZ as faker} from '@faker-js/faker'
 import { createClient } from '@supabase/supabase-js'
 
 // Create a single supabase client for interacting with your database
-const supabase = createClient( 
+ const supabase = createClient( 
     process.env.VITE_SUPABASE_URL,
     process.env.SERVICE_ROLE_KEY
 )
 
 
-const seedTruloTwo = async () => {
+
+
+const seedTrdlo = async () => {
     
-    const name =  faker.lorem.words(3);
+    // const name =  faker.lorem.words(3);
     
     await supabase.from('trdlotwo').insert({
         name: name,
@@ -31,5 +33,5 @@ const seedTruloTwo = async () => {
     })
 }
 
-await seedTruloTwo()
+await seedTrdlo()
 

@@ -1,28 +1,63 @@
 <script setup>
 import InputForm from './components/InputForm.vue';
 import DisplayForm from './components/DisplayForm.vue';
-import {ref, reactive} from 'vue'
-import {supabase} from './components/lib/supabaseClient'
+import { ref, onMounted } from 'vue'
+import { supabase } from './components/lib/supabaseClient'
+
 
 const receivedData = ref([ ]);
 
-function handleDataSubmitted(data) {
-    receivedData.value.unshift(reactive(data));
-    // console.log(data); 
+// This function is called when the form is submitted or onMounted
+// ****************************************************************
+async function fetchData() {
+  try {
+    const { data, error } = await supabase
+      .from('trdlotwo') 
+      .select('*'); 
+
+    if (error) {
+      console.error('Error fetching data:', error);
+    } else {
+      receivedData.value = data; 
+    }
+  } catch (error) {
+    console.error('Error during Supabase operation:', error);
+  }
 }
 
-console.log(supabase) 
+onMounted(() => {
+  fetchData(); 
+});
+// ***********************************************************
 
+// This function insert and return data from supabase
+// ************************************************************
+async function handleDataSubmitted(data) {
+    try {
+      const { data: insertedData, error } = await supabase
+      .from('trdlotwo')
+      .insert(data) 
+      .select()
+      
+    if (error) {
+        console.error('Error inserting data:', error);
+    } else {
+      receivedData.value.push(...insertedData);
+    }
+  } catch (error) {
+    console.error('Error during Supabase operation:', error);
+  }
+}
+// ************************************************************
+    
 
-
-
-
+// This function check if all required data are inserted
+// ************************************************************
 const isFormValid = ref(false);
 const updateFormValidity = (isValid) => {
     isFormValid.value = isValid;
- 
 }
-
+// ************************************************************
 </script>
 
 <template>
