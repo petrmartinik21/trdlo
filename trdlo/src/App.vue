@@ -83,8 +83,6 @@ const updateFormValidity = (isValid) => {
 
 
 
-
-
 <style scoped>
 header {
   line-height: 1.5;
