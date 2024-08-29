@@ -59,7 +59,35 @@ const updateFormValidity = (isValid) => {
 }
 // ************************************************************
 
-//  text
+//  This function update the data in supabase
+// ************************************************************
+async function updatedData(update) {
+    try {
+      const { error } = await supabase
+      .from('trdlotwo')
+      .update({
+        name: update.name,
+        station: update.station,
+        description: update.description,
+        solution: update.solution
+      }) 
+      .eq('id', update.id)
+
+    if (error) {
+        console.error('Error updating data:', error);
+        // this else update the data in the array receivedData
+    } else {
+      const itemIndex = receivedData.value.findIndex(item => item.id === update.id);
+      if (itemIndex !== -1) {
+        receivedData.value[itemIndex] = update;
+      }
+    }
+  } catch (error) {
+    console.error('Error during Supabase operation:', error);
+  }
+}
+// **************************************************************
+
 
 </script>
 
@@ -79,7 +107,7 @@ const updateFormValidity = (isValid) => {
     
 </InputForm>
 
-<display-form :data="receivedData" ></display-form>
+<display-form :data="receivedData" @save-changes="updatedData"></display-form>
 
 </template>
 

@@ -62,21 +62,6 @@ const props = defineProps({
 // *******************************************************
 const emit = defineEmits(["save-changes"]);
 const isEditing = ref(new Array(props.data.length).fill(false));
-// const isEditing = computed({
-//   get() {
-//     return new Array(props.data.length).fill(false);
-//   },
-// });
-
-// watch(
-//   () => props.data,
-//   () => {
-//     // Update isEditing when props.data changes
-//     isEditing.value = new Array(props.data.length).fill(false);
-//   }
-// );
-
-
 
 // Computed property to sort data in descending order
 // *******************************************************
@@ -88,25 +73,19 @@ const sortedData = computed(() => {
 // *******************************************************
 
 
-
+// Save changes to data
+// *******************************************************
 function saveChanges (id) {
-  
   const updatedData = sortedData.value.find(item => item.id === id);
      emit('save-changes', updatedData);
      const index = sortedData.value.findIndex(item => item.id === id);
       if (index !== -1) {
           isEditing.value[index] = false; 
       }
-
-// const itemIndex = sortedData.findIndex(item => item.id === itemId);
-//   if (itemIndex !== -1) {
-//     emit('save-changes', { ...sortedData[itemIndex], index: itemIndex });
-//     // No need to manually manage isEditing here,
-//     // as it's handled by the computed property and watch.
-//   }
-    console.log( index, id, updatedData.name)
+    // console.log( index, id, updatedData.name)
   }
 
+ 
 
 
 </script>
