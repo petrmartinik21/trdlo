@@ -40,7 +40,7 @@
 
         <button @click="isEditing[index] = true" v-if="!isEditing[index]">Edit</button>
         <button @click="saveChanges(item.id)" v-if="isEditing[index]">Save</button>
-        <!-- <button @click="cancelChanges(index)" v-else >Cancel</button> -->
+        <button @click="deleteData(item.id)" >Delete</button>
     </li>
 </ul>
         <p v-else>No data submitted yet.</p>
@@ -60,7 +60,7 @@ const props = defineProps({
     }
 });
 // *******************************************************
-const emit = defineEmits(["save-changes"]);
+const emit = defineEmits(["save-changes", "delete-data"]);
 const isEditing = ref(new Array(props.data.length).fill(false));
 
 // Computed property to sort data in descending order
@@ -73,7 +73,7 @@ const sortedData = computed(() => {
 // *******************************************************
 
 
-// Save changes to data
+// Save changes to updatedData
 // *******************************************************
 function saveChanges (id) {
   const updatedData = sortedData.value.find(item => item.id === id);
@@ -82,10 +82,13 @@ function saveChanges (id) {
       if (index !== -1) {
           isEditing.value[index] = false; 
       }
-    // console.log( index, id, updatedData.name)
   }
 
- 
+//  Delete data from supabase
+// *******************************************************
+function deleteData(id) {
+    emit('delete-data', id);
+}
 
 
 </script>

@@ -88,6 +88,34 @@ async function updatedData(update) {
 }
 // **************************************************************
 
+// This function delete data from supabase
+// **************************************************************
+async function deleteData(id) {
+  try {
+    const { error } = await supabase
+    .from('trdlotwo')
+    .delete()
+    .eq('id', id)
+
+if (error) {
+    console.error('Error deleting data:', error);
+} else {
+  console.log(`Block id:${id} deleted successfully`);
+  // this else delete the data in the array receivedData
+  const index = receivedData.value.findIndex(item => item.id === id);
+    if (index !== -1) {
+      receivedData.value.splice(index, 1);
+    }
+  }
+} catch (error) {
+  console.error('Error during Supabase operation:', error);
+}
+}
+// ****************************************************************
+
+
+
+
 
 </script>
 
@@ -107,7 +135,10 @@ async function updatedData(update) {
     
 </InputForm>
 
-<display-form :data="receivedData" @save-changes="updatedData"></display-form>
+<display-form :data="receivedData" 
+              @delete-data="deleteData" 
+              @save-changes="updatedData">
+</display-form>
 
 </template>
 
