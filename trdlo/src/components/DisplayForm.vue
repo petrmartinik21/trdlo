@@ -87,7 +87,9 @@ function saveChanges (id) {
 //  Delete data from supabase
 // *******************************************************
 function deleteData(id) {
-    emit('delete-data', id);
+   if (confirm('Do you want to delete the data?')) {
+     emit('delete-data', id);
+   }
 }
 
 
