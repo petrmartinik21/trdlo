@@ -1,6 +1,5 @@
 <template>
   <ul v-if="sortedData.length > 0">
-    <!-- <li v-for="(item, index) in sortedData" :key="item.id"> -->
     <li v-for="(item, index) in sortedData" :key="item.id">
       <span>{{ item.id }}</span>
       <p>
@@ -28,7 +27,11 @@
 
       <p>
         Importance:
-        <span v-if="!isEditing[index]">{{ item.importance }}</span>
+        <span
+          :class="['importance-level', `importance-${item.importance}`]"
+          v-if="!isEditing[index]"
+          >{{ item.importance }}</span
+        >
         <select v-model="item.importance" v-else :disabled="!isEditing[index]">
           <option value="low">Low</option>
           <option value="middle">Middle</option>
@@ -78,7 +81,6 @@ function saveChanges(id) {
   if (index !== -1) {
     isEditing.value[index] = false
   }
-  
 }
 
 //  Delete data from supabase
@@ -99,13 +101,38 @@ ul {
   border-radius: 0.75rem;
   margin: 1rem;
   padding: 0.7rem;
-
+  // .importance-low {
+  //     background: rgb(2, 86, 2);
+  // };
   li {
     background: rgb(62, 62, 102);
     margin: 0.6rem;
     padding: 0.65rem;
     border-radius: 0.75rem;
     color: rgb(224, 224, 224);
+
+    .importance-low {
+      background-color: yellow;
+      color: black;
+    }
+
+    .importance-middle {
+      background-color: orange;
+      color: black;
+    }
+    .importance-high {
+      background-color: rgb(255, 0, 0);
+      color: black;
+    }
   }
+}
+
+.importance-level {
+  width: 4rem;
+  padding: 0 0.6rem;
+  border-radius: 0.2rem;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
 }
 </style>
