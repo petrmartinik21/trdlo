@@ -1,7 +1,7 @@
 <template>
   <ul v-if="sortedData.length > 0">
     <li v-for="(item, index) in sortedData" :key="item.id">
-      <span>{{ item.id }}</span>
+      <span>Issue No. - {{ item.id }}</span>
       <p>
         Name:
         <span v-if="!isEditing[index]">{{ item.name }}</span>
@@ -128,11 +128,12 @@ ul {
 }
 
 .importance-level {
-  width: 4rem;
+  width: 3.3rem;
   padding: 0 0.6rem;
   border-radius: 0.2rem;
   display: inline-block;
   text-align: center;
   font-weight: bold;
+  font-size: 10px;
 }
 </style>
