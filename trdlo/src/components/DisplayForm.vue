@@ -1,7 +1,23 @@
 <template>
   <ul v-if="sortedData.length > 0">
     <li v-for="(item, index) in sortedData" :key="item.id">
-      <span>Issue No. - {{ item.id }}</span>
+      <span>Issue No. // {{ item.id }}</span>
+
+      <!-- <div class="progress-container">
+        <div
+          class="progress-bar"
+          :style="{ width: `${getProgress(item.stage)}%` }"
+        ></div>
+        <div class="stage-labels">
+          
+          
+          <span :class="{ active: item.stage >= 1 }">Stage 1</span>
+          <span :class="{ active: item.stage >= 2 }">Stage 2</span>
+          <span :class="{ active: item.stage >= 3 }">Stage 3</span>
+          <span :class="{ active: item.stage >= 4 }">Stage 4</span>
+        </div>
+      </div> -->
+
       <p>
         Name:
         <span v-if="!isEditing[index]">{{ item.name }}</span>
@@ -30,12 +46,28 @@
         <span
           :class="['importance-level', `importance-${item.importance}`]"
           v-if="!isEditing[index]"
-          >{{ item.importance }}</span
         >
+          {{ item.importance }}
+        </span>
         <select v-model="item.importance" v-else :disabled="!isEditing[index]">
           <option value="low">Low</option>
           <option value="middle">Middle</option>
           <option value="high">High</option>
+        </select>
+      </p>
+      <p>
+        Progress of Solution:
+        <span :class="['progress-level', `progress-${item.progress}`]" v-if="!isEditing[index]">
+          {{
+            item.progress === 0 ? 'Not started' : item.progress === 4 ? 'Finished' : item.progress
+          }}
+        </span>
+        <select v-model="item.progress" v-else :disabled="!isEditing[index]">
+          <option value="0">Not started</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">Finished</option>
         </select>
       </p>
 
@@ -135,5 +167,53 @@ ul {
   text-align: center;
   font-weight: bold;
   font-size: 10px;
+}
+// Progress bar styles
+// *******************************************************
+.progress-container {
+  width: 100%;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: #4caf50;
+  border-radius: 4px;
+  transition: width 0.3s ease-in-out;
+}
+
+.stage-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-top: 5px;
+
+  span {
+    &.active {
+      font-weight: bold;
+    }
+  }
+}
+
+.stage-controls {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+
+  button {
+    flex: 1;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #eee;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
 }
 </style>

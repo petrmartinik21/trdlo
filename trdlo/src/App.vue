@@ -11,7 +11,7 @@ const receivedData = ref([])
 async function fetchData() {
   try {
     const { data, error } = await supabase.from('trdlotwo').select('*')
-    // console.log( typeof data[2].importance)
+    console.log( data[2])
     if (error) {
       console.error('Error fetching data:', error)
     } else {
@@ -63,7 +63,8 @@ async function updatedData(update) {
         station: update.station,
         description: update.description,
         solution: update.solution,
-        importance: update.importance
+        importance: update.importance,
+        progress: update.progress
       })
       .eq('id', update.id)
 
