@@ -56,17 +56,27 @@
         </select>
       </p>
       <p>
-        Progress of Solution:
+        Progress:
         <span :class="['progress-level', `progress-${item.progress}`]" v-if="!isEditing[index]">
           {{
-            item.progress === 0 ? 'Not started' : item.progress === 4 ? 'Finished' : item.progress
+            item.progress == 0
+              ? 'Not started'
+              : item.progress == 1
+              ? '25%'
+              : item.progress == 2
+              ? '50%'
+              : item.progress == 3
+              ? '75%'
+              : item.progress == 4
+              ? 'Finished'
+              : 'Unknown'
           }}
         </span>
         <select v-model="item.progress" v-else :disabled="!isEditing[index]">
           <option value="0">Not started</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
+          <option value="1">25%</option>
+          <option value="2">50%</option>
+          <option value="3">75%</option>
           <option value="4">Finished</option>
         </select>
       </p>
@@ -91,6 +101,7 @@ const props = defineProps({
     required: true
   }
 })
+
 // *******************************************************
 const emit = defineEmits(['save-changes', 'delete-data'])
 const isEditing = ref(new Array(props.data.length).fill(false))
@@ -122,6 +133,10 @@ function deleteData(id) {
     emit('delete-data', id)
   }
 }
+
+
+
+
 </script>
 
 <style lang="scss" scoped>
