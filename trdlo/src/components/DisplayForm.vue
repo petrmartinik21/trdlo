@@ -3,20 +3,9 @@
     <li v-for="(item, index) in sortedData" :key="item.id">
       <span>Issue No. // {{ item.id }}</span>
 
-      <!-- <div class="progress-container">
-        <div
-          class="progress-bar"
-          :style="{ width: `${getProgress(item.stage)}%` }"
-        ></div>
-        <div class="stage-labels">
-          
-          
-          <span :class="{ active: item.stage >= 1 }">Stage 1</span>
-          <span :class="{ active: item.stage >= 2 }">Stage 2</span>
-          <span :class="{ active: item.stage >= 3 }">Stage 3</span>
-          <span :class="{ active: item.stage >= 4 }">Stage 4</span>
-        </div>
-      </div> -->
+      <div class="progress-bar-container">
+        <div class="progress-bar" :style="{ width: `${item.progress * 25}%` }"></div>
+      </div>
 
       <p>
         Name:
@@ -136,7 +125,6 @@ function deleteData(id) {
 
 
 
-
 </script>
 
 <style lang="scss" scoped>
@@ -185,50 +173,70 @@ ul {
 }
 // Progress bar styles
 // *******************************************************
-.progress-container {
+
+.progress-bar-container {
   width: 100%;
+  height: 10px;
   background-color: #f0f0f0;
   border-radius: 4px;
   margin-bottom: 10px;
 }
 
 .progress-bar {
-  height: 10px;
+  height: 100%;
   background-color: #4caf50;
   border-radius: 4px;
-  transition: width 0.3s ease-in-out;
 }
 
-.stage-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  margin-top: 5px;
 
-  span {
-    &.active {
-      font-weight: bold;
-    }
-  }
-}
 
-.stage-controls {
-  display: flex;
-  gap: 5px;
-  margin-top: 10px;
 
-  button {
-    flex: 1;
-    padding: 5px;
-    border: none;
-    border-radius: 4px;
-    background-color: #eee;
-    cursor: pointer;
 
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-  }
-}
+
+// .progress-container {
+//   width: 100%;
+//   background-color: #f0f0f0;
+//   border-radius: 4px;
+//   margin-bottom: 10px;
+// }
+
+// .progress-bar {
+//   height: 10px;
+//   background-color: #4caf50;
+//   border-radius: 4px;
+//   transition: width 0.3s ease-in-out;
+// }
+
+// .stage-labels {
+//   display: flex;
+//   justify-content: space-between;
+//   font-size: 12px;
+//   margin-top: 5px;
+
+//   span {
+//     &.active {
+//       font-weight: bold;
+//     }
+//   }
+// }
+
+// .stage-controls {
+//   display: flex;
+//   gap: 5px;
+//   margin-top: 10px;
+
+//   button {
+//     flex: 1;
+//     padding: 5px;
+//     border: none;
+//     border-radius: 4px;
+//     background-color: #eee;
+//     cursor: pointer;
+
+//     &:disabled {
+//       opacity: 0.5;
+//       cursor: not-allowed;
+//     }
+//   }
+// }
 </style>
