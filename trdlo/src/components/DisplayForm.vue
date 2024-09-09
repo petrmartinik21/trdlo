@@ -1,8 +1,13 @@
 <template>
   <ul v-if="sortedData.length > 0">
     <li v-for="(item, index) in sortedData" :key="item.id">
-      <span>Issue No. // {{ item.id }}</span>
-
+      <div>
+      <time-formater :timestamp="item.created_at"></time-formater>
+      </div>
+      <span>Issue No.{{ item.id }} Progress Bar</span>
+     
+      
+     
       <div class="progress-bar-container">
         <div class="progress-bar" :style="{ width: `${item.progress * 25}%` }"></div>
       </div>
@@ -81,7 +86,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { defineProps, defineEmits } from 'vue'
-
+import timeFormater from './timeFormater.vue';
 // Data from parent component
 // *******************************************************
 const props = defineProps({
