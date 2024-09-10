@@ -107,7 +107,7 @@ async function deleteData(id) {
   }
 }
 // ****************************************************************
-
+// Filtering for Display
 const filteredData = computed(() => {
   if (selectedPriority.value === '') {
     return receivedData.value; // No filter, return all data
@@ -144,6 +144,7 @@ const filteredData = computed(() => {
     >
   </InputForm>
 
+<!-- Display filtered Data -->
   <div>
     <label for="priorityFilter">Filter by Priority:</label>
     <select id="priorityFilter" v-model="selectedPriority">
@@ -156,7 +157,6 @@ const filteredData = computed(() => {
   </div>
 
   <DisplayForm :data="filteredData" @delete-data="deleteData" @save-changes="updatedData" />
-  
   <!-- <display-form :data="receivedData" @delete-data="deleteData" @save-changes="updatedData" /> -->
   
 </template>
