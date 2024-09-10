@@ -111,6 +111,10 @@ async function deleteData(id) {
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
   </header>
 
+  <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    Button
+  </div>
+
   <InputForm @data-submitted="handleDataSubmitted" @formValidityChanged="updateFormValidity">
     <template v-slot:icon>
       <span v-if="!isFormValid.value">✍️</span> <span v-else>👏</span>

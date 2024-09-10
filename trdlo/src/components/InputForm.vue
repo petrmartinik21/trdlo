@@ -1,6 +1,6 @@
 <template>
   
-<form @submit.prevent="formSubmit" id="form">
+<form @submit.prevent="formSubmit" id="form" class="bg-sky-800" >
     <header>{{ formTitle }}</header>
     <div><slot name="fill-the-form"></slot></div>
     
