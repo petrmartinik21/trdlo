@@ -27,7 +27,7 @@
 
    
       
-    <button type="submit" id="submit-button" :disabled="!isValid" >
+    <button type="submit" id="submit-button" :disabled="!isValid" class="bg-stone-500 hover:bg-stone-400 rounded-full px-4 m-2">
         <slot name="icon" ></slot>
     </button>
    

@@ -80,7 +80,7 @@
       <button @click="deleteData(item.id)">Delete</button>
     </li>
   </ul>
-  <p v-else>No data submitted yet.</p>
+  <p v-else>No data submitted.</p>
 </template>
 
 <script setup>

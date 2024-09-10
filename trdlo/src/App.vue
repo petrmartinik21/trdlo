@@ -1,8 +1,11 @@
 <script setup>
 import InputForm from './components/InputForm.vue'
 import DisplayForm from './components/DisplayForm.vue'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { supabase } from './components/lib/supabaseClient'
+
+
+const selectedPriority = ref('');
 
 const receivedData = ref([])
 
@@ -104,13 +107,25 @@ async function deleteData(id) {
   }
 }
 // ****************************************************************
+
+const filteredData = computed(() => {
+  if (selectedPriority.value === '') {
+    return receivedData.value; // No filter, return all data
+  } else if (selectedPriority.value === 'finished') {
+    return receivedData.value.filter(item => item.progress === 4); // Filter by finished
+  } else {
+    return receivedData.value.filter(item => item.importance === selectedPriority.value); // Filter by importance
+  }
+});
+
 </script>
 
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
   </header>
-
+  <!-- Filter by priority -->
+  
   <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
     Button
   </div>
@@ -129,8 +144,21 @@ async function deleteData(id) {
     >
   </InputForm>
 
-  <display-form :data="receivedData" @delete-data="deleteData" @save-changes="updatedData">
-  </display-form>
+  <div>
+    <label for="priorityFilter">Filter by Priority:</label>
+    <select id="priorityFilter" v-model="selectedPriority">
+      <option value="">All</option>
+      <option value="high">High</option>
+      <option value="middle">Middle</option>
+      <option value="low">Low</option>
+      <option value="finished">Finished</option> 
+    </select>
+  </div>
+
+  <DisplayForm :data="filteredData" @delete-data="deleteData" @save-changes="updatedData" />
+  
+  <!-- <display-form :data="receivedData" @delete-data="deleteData" @save-changes="updatedData" /> -->
+  
 </template>
 
 <style scoped>
