@@ -2,36 +2,59 @@
   <ul v-if="sortedData.length > 0">
     <li v-for="(item, index) in sortedData" :key="item.id">
       <div>
-      <time-formater :timestamp="item.created_at"></time-formater>
+        <time-formater :timestamp="item.created_at"></time-formater>
       </div>
       <span>Issue No.{{ item.id }} Progress Bar</span>
-     
-      
-     
+
       <div class="progress-bar-container">
-        <div class="progress-bar" :style="{ width: `${item.progress * 25}%` }"></div>
+        <div
+          class="progress-bar"
+          :style="{
+            width: `${item.progress * 25}%`
+          }"
+        ></div>
       </div>
 
       <p>
         Name:
         <span v-if="!isEditing[index]">{{ item.name }}</span>
-        <input type="text" v-model="item.name" v-else :disabled="!isEditing[index]" />
+        <input
+          type="text"
+          v-model="item.name"
+          v-else
+          :disabled="!isEditing[index]"
+        />
       </p>
       <p>
         Station:
         <span v-if="!isEditing[index]">{{ item.station }}</span>
-        <input type="text" v-model="item.station" v-else :disabled="!isEditing[index]" />
+        <input
+          type="text"
+          v-model="item.station"
+          v-else
+          :disabled="!isEditing[index]"
+        />
       </p>
       <p>
         Description:
         <span v-if="!isEditing[index]">{{ item.description }}</span>
-        <textarea type="text" v-model="item.description" v-else :disabled="!isEditing[index]">
+        <textarea
+          type="text"
+          v-model="item.description"
+          v-else
+          :disabled="!isEditing[index]"
+        >
         </textarea>
       </p>
       <p>
         Solution:
         <span v-if="!isEditing[index]">{{ item.solution }}</span>
-        <textarea type="text" v-model="item.solution" v-else :disabled="!isEditing[index]">
+        <textarea
+          type="text"
+          v-model="item.solution"
+          v-else
+          :disabled="!isEditing[index]"
+        >
         </textarea>
       </p>
 
@@ -51,19 +74,22 @@
       </p>
       <p>
         Progress:
-        <span :class="['progress-level', `progress-${item.progress}`]" v-if="!isEditing[index]">
+        <span
+          :class="['progress-level', `progress-${item.progress}`]"
+          v-if="!isEditing[index]"
+        >
           {{
             item.progress == 0
               ? 'Not started'
               : item.progress == 1
-              ? '25%'
-              : item.progress == 2
-              ? '50%'
-              : item.progress == 3
-              ? '75%'
-              : item.progress == 4
-              ? 'Finished'
-              : 'Unknown'
+                ? '25%'
+                : item.progress == 2
+                  ? '50%'
+                  : item.progress == 3
+                    ? '75%'
+                    : item.progress == 4
+                      ? 'Finished'
+                      : 'Unknown'
           }}
         </span>
         <select v-model="item.progress" v-else :disabled="!isEditing[index]">
@@ -75,9 +101,26 @@
         </select>
       </p>
 
-      <button @click="isEditing[index] = true" v-if="!isEditing[index]">Edit</button>
-      <button @click="saveChanges(item.id)" v-if="isEditing[index]">Save</button>
-      <button @click="deleteData(item.id)">Delete</button>
+      <button
+        @click="isEditing[index] = true"
+        v-if="!isEditing[index]"
+        class="border-double border-2 border-stone-700 bg-stone-500 hover:text-slate-700 hover:cursor-pointer hover:bg-stone-400 hover:border-stone-800 hover:border-double hover:borde-2 rounded-full px-4 m-2"
+      >
+        Edit
+      </button>
+      <button
+        @click="saveChanges(item.id)"
+        v-if="isEditing[index]"
+        class="border-double border-2 border-stone-600 bg-stone-500 hover:text-slate-700  hover:cursor-pointer hover:bg-stone-400 hover:border-stone-800 hover:border-double hover:border-2 rounded-full px-4 m-2"
+      >
+        Save
+      </button>
+      <button
+        @click="deleteData(item.id)"
+        class="border-double border-2 border-stone-600 bg-stone-500 hover:text-slate-700 hover:cursor-pointer hover:bg-stone-400 hover:border-stone-800 hover:border-double hover:border-2 rounded-full px-4 m-2"
+      >
+        Delete
+      </button>
     </li>
   </ul>
   <p v-else>No data submitted.</p>
@@ -86,7 +129,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { defineProps, defineEmits } from 'vue'
-import timeFormater from './timeFormater.vue';
+import timeFormater from './timeFormater.vue'
 // Data from parent component
 // *******************************************************
 const props = defineProps({
@@ -127,9 +170,6 @@ function deleteData(id) {
     emit('delete-data', id)
   }
 }
-
-
-
 </script>
 
 <style lang="scss" scoped>
@@ -192,11 +232,6 @@ ul {
   background-color: #4caf50;
   border-radius: 4px;
 }
-
-
-
-
-
 
 // .progress-container {
 //   width: 100%;
