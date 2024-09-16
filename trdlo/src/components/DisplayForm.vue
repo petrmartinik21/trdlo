@@ -104,6 +104,7 @@
       <button
         @click="isEditing[index] = true"
         v-if="!isEditing[index]"
+        
         class="border-double border-2 border-stone-700 bg-stone-500 hover:text-slate-700 hover:cursor-pointer hover:bg-stone-400 hover:border-stone-800 hover:border-double hover:borde-2 rounded-full px-4 m-2"
       >
         Edit
