@@ -3,7 +3,7 @@ import InputForm from './components/InputForm.vue'
 import DisplayForm from './components/DisplayForm.vue'
 import { ref, onMounted, computed } from 'vue'
 import { supabase } from './components/lib/supabaseClient'
-
+import registerForm from './components/registerForm.vue'
 
 const selectedPriority = ref('');
 
@@ -118,12 +118,31 @@ const filteredData = computed(() => {
   }
 });
 
+
+// // Register
+// const 
+// console.log(Registration-submitted)
+// const { data, error } = await supabase.auth.signUp({
+//   username: 'example',
+//   email: 'example@email.com',
+//   password: 'example-password',
+// })
+
+
+
+
+
+
+
 </script>
 
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
   </header>
+  
+  <registerForm @registration-submitted="register"></registerForm>
+  
   <!-- Filter by priority -->
   
   <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
