@@ -14,7 +14,7 @@ const receivedData = ref([])
 async function fetchData() {
   try {
     const { data, error } = await supabase.from('trdlotwo').select('*')
-    console.log( data[2])
+    // console.log( data[2])
     if (error) {
       console.error('Error fetching data:', error)
     } else {
@@ -130,6 +130,17 @@ const filteredData = computed(() => {
 
 
 
+const register = async (formData) => {
+
+  console.log(formData)
+// //   const { data, error } = await supabase.auth.signUp({
+// //     username: formData.username,
+// //     // email: 'example@email.com',
+// //     // password: 'example-password',
+// // })
+
+
+} 
 
 
 

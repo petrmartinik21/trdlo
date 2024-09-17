@@ -49,6 +49,9 @@
     password.value = ''
     confirmPassword.value = ''
   }
+
+
+
   </script>
   
   <!-- <style scoped>
