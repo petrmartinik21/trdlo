@@ -130,17 +130,17 @@ const filteredData = computed(() => {
 
 
 
-const register = async (formData) => {
+// const register = async (formData) => {
 
-  console.log(formData)
-// //   const { data, error } = await supabase.auth.signUp({
-// //     username: formData.username,
-// //     // email: 'example@email.com',
-// //     // password: 'example-password',
-// // })
+//   console.log(formData)
+      // // //   const { data, error } = await supabase.auth.signUp({
+      // // //     username: formData.username,
+      // // //     // email: formData.email,
+      // // //     // password: formData.password,
+      // // // })
 
 
-} 
+// } 
 
 
 
