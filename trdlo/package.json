@@ -19,7 +19,8 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.45.1",
     "date-fns": "^3.6.0",
-    "vue": "^3.4.29"
+    "vue": "^3.4.29",
+    "vue-router": "^4.4.5"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",

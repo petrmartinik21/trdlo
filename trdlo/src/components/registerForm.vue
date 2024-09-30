@@ -63,7 +63,9 @@
         class="border-2 border-stone-700 bg-stone-500 hover:text-slate-700 hover:cursor-pointer hover:bg-stone-400 hover:border-stone-800 hover:border-double hover:borde-2 rounded-full px-4 m-2"
       />
     </div>
+    <div class="w-24 border-2 border-stone-700 bg-stone-500 hover:text-slate-700 hover:cursor-pointer hover:bg-stone-400 hover:border-stone-800 hover:border-double hover:borde-2 rounded-full px-4 m-2">
     <button type="submit">Register</button>
+</div>
   </form>
 </template>
 
@@ -88,28 +90,24 @@ const signup = async () => {
     alert('Passwords do not match')
     return
   }
-
+// Registration
   const { data, error } = await supabase.auth.signUp({
     email: formData.value.email,
     password: formData.value.password
   })
-
-
-
+ 
   if (error) return console.log(error)
 
-  console.log(data.user)
-
-  if (data.user) {
+  // console.log(data.user)
+// Inserting data into profiles table
+  if (data.user) {  
     const { error } = await supabase.from('profiles').insert({
       id: data.user.id,
       username: formData.value.username,
-      full_name: formData.value.firstName.concat(
-        +' ' + formData.value.lastName
-      )
-     
-    })
-    if (error) console.log('Profiles err: ', error)
+      full_name: `${formData.value.firstName} ${formData.value.lastName }`
+    });
+    if (error) {console.log('Profiles err: ', error)}
+
   }
   // router.push('/')
 
@@ -119,16 +117,24 @@ const signup = async () => {
   //   email: email.value,
   //   password: password.value
   // })
- // Clear the form
- formData.value = {
-    username: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  };
+  // formData.value = {
+  //         username: '',
+  //         firstName: '',
+  //         lastName: '',
+  //         email: '',
+  //         password: '',
+  //         confirmPassword: ''
+  //       };
 
+  const newFormData = { ...formData.value };
+  newFormData.username = '';
+  newFormData.firstName = '';
+  newFormData.lastName = '';
+  newFormData.email = '';
+  newFormData.password = '';
+  newFormData.confirmPassword = '';
+  
+  formData.value = newFormData;
  
 }
 </script>

@@ -152,13 +152,13 @@ const filteredData = computed(() => {
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
   </header>
   
-  <registerForm @registration-submitted="register"></registerForm>
+  <registerForm ></registerForm>
   
   <!-- Filter by priority -->
   
-  <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  <!-- <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
     Button
-  </div>
+  </div> -->
 
   <InputForm @data-submitted="handleDataSubmitted" @formValidityChanged="updateFormValidity">
     <template v-slot:icon>
