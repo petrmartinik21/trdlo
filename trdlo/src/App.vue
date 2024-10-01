@@ -4,6 +4,9 @@ import DisplayForm from './components/DisplayForm.vue'
 import { ref, onMounted, computed } from 'vue'
 import { supabase } from './components/lib/supabaseClient'
 import registerForm from './components/registerForm.vue'
+import loginForm from './components/loginForm.vue'
+
+
 
 const selectedPriority = ref('');
 
@@ -153,7 +156,7 @@ const filteredData = computed(() => {
   </header>
   
   <registerForm ></registerForm>
-  
+  <loginForm></loginForm>
   <!-- Filter by priority -->
   
   <!-- <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
