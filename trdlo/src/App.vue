@@ -154,6 +154,16 @@ const filteredData = computed(() => {
   <header>
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
   </header>
+ 
+  <div>
+    <nav>
+      <router-link to="/">Home</router-link>
+      <router-link to="/about">About</router-link>
+    </nav>
+    <router-view /> 
+  </div>
+
+
   
   <registerForm ></registerForm>
   <loginForm></loginForm>
