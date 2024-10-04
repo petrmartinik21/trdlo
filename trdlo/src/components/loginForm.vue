@@ -36,12 +36,14 @@
   // const emit = defineEmits(['registration-submitted'])
   import { supabase } from './lib/supabaseClient'
   
+//   import router from '@/router';
+
   const formData = ref({
     email: '',
     password: ''    
   })
   
-  // const router = useRouter()
+//   const router = useRouter()
   
   const signin = async () => {
     
@@ -55,13 +57,14 @@
   
     console.log(data)
   
-    // router.push('/')
+   
    
     const newFormData = { ...formData.value };
     newFormData.email = '';
     newFormData.password = '';
        
     formData.value = newFormData;
-   
+
+    // router.push('/')
   }
   </script>

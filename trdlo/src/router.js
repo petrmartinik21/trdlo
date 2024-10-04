@@ -1,20 +1,19 @@
-// src/router.js
+
 import { createRouter, createWebHistory } from 'vue-router';
-import App from './App.vue';
-// import Home from './components/Home.vue'; // Replace with your actual component
-// import About from './components/About.vue'; // Replace with your actual component
+import Home from './views/HomePage.vue'; // Replace with your actual component
+import About from './views/AboutPage.vue'; // Replace with your actual component
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: App
+    component: Home
   },
-//   {
-//     path: '/about',
-//     name: 'About',
-//     component: About
-//   }
+  {
+     path: '/about',
+    name: 'About',
+    component: About
+  }
 ];
 
 const router = createRouter({
