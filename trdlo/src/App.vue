@@ -157,17 +157,26 @@ const filteredData = computed(() => {
   <br>
 
   <div>
-    <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
+    <nav class="bg-sky-900">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link to="login">Login</router-link> |
+      <router-link to="register">Register</router-link> 
+    
     </nav>
-    <router-view /> 
+    <hr>
+    <br>
+    <div class="container">
+       <router-view /> 
+    </div>
+   
+
   </div>
 
 
   
-  <registerForm ></registerForm>
-  <loginForm></loginForm>
+  <!-- <registerForm ></registerForm>
+  <loginForm></loginForm> -->
   <!-- Filter by priority -->
   
   <!-- <div class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

@@ -1,4 +1,7 @@
 <template>
+  <h1>
+    Login Page
+  </h1>
     <form
       @submit.prevent="signin"
       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
