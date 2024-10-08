@@ -3,9 +3,9 @@ import InputForm from './components/InputForm.vue'
 import DisplayForm from './components/DisplayForm.vue'
 import { ref, onMounted, computed } from 'vue'
 import { supabase } from './components/lib/supabaseClient'
-import registerForm from './components/registerForm.vue'
-import loginForm from './components/loginForm.vue'
-
+// import registerForm from './components/registerForm.vue'
+// import loginForm from './components/loginForm.vue'
+import goBack from './components/goBack.vue'
 
 
 const selectedPriority = ref('');
@@ -154,6 +154,16 @@ const filteredData = computed(() => {
   
     <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
  
+    <!-- transition -->
+  <router-view v-slot="{ Component }">
+  <transition name="slide" mode="out-in">
+    <component :is="Component" :key="$route.path"/>
+  </transition>
+  </router-view>
+
+
+
+
   <br>
 
   <div>
@@ -165,6 +175,7 @@ const filteredData = computed(() => {
     
     </nav>
     <hr>
+     <goBack class="border-double border-2 border-stone-600 bg-stone-500 hover:cursor-pointer hover:bg-stone-400 hover:border-stone-800 hover:border-double hover:border-2 rounded-full px-4 m-2"></goBack>
     <br>
     <div class="container">
        <router-view /> 
@@ -214,7 +225,7 @@ const filteredData = computed(() => {
   
 </template>
 
-<style scoped>
+<style >
 header {
   line-height: 1.5;
 }
@@ -241,4 +252,20 @@ header {
     flex-wrap: wrap;
   }
 }
+
+
+/* transition */
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: opacity 1s, transform 1s;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-30%)
+}
+
+
 </style>
